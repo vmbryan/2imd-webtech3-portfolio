@@ -1,0 +1,13 @@
+.homework{
+    background-color: violet;
+}
+.broken{
+    background-color: cyan;
+}
+.infinity{
+    background-color: yellow;
+}
+.grid{
+    display: grid;
+    grid-column: 1;
+}
