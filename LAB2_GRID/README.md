@@ -4,3 +4,6 @@
 
 ![alt text](https://i.imgur.com/JvTYBcL.png "Screenshot of gridgarden completion")
 
+[Codepen thefuture](https://codepen.io/vmbryan/pen/MWwvrpO)
+
+[Codepen gridticket](https://codepen.io/vmbryan/pen/qBdXKqd)
