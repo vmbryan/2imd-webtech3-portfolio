@@ -9,10 +9,13 @@ body{
     width: 400px;
     height: 800px;
     display: grid;
-    background-image: ;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 2fr 12fr 1fr 1fr;
     grid-auto-rows: 0px;
+    background-image: url(https://images.unsplash.com/photo-1545128485-c400e7702796?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(120px);
 }
 .grid>div{
     display: flex;
@@ -52,4 +55,47 @@ body{
 .ticketprice, .date, .admit{
     border: 2px solid black;
     margin: -1px;
+}
+@media(min-width: 600px){
+    .grid{
+        width: 1000px;
+        height: 300px;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    }
+    .grid>div{
+        border: solid 2px black;
+        margin: -1px;
+    }
+    .header{
+        background-color: transparent;
+        grid-area: 1 / 1 / span 3 / span 3;
+    }
+    .header>*{
+        color: black;
+    }
+    .qrcode>img{
+        width: 250px;
+        height: 250px;
+    }
+    .qrcode{
+        grid-area: 1 / 4 / span 5 / span 2; 
+    }
+    .date{
+        grid-area: 4 / 1 / span 1 / span 1;
+    }
+    .admit{
+        grid-area: 4 / 2 / span 1 / span 1;
+    }
+    .ticketprice{
+        grid-area: 4 / 3 / span 1 / span 1;
+    }
+    .info{
+        visibility: visible;
+        grid-area: 5 / 1 / span 1 / span 3;
+        text-align: center;
+    }
+    .info>p{
+        letter-spacing: normal;
+    }
 }
