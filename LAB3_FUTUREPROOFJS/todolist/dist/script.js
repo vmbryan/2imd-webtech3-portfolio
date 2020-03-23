@@ -14,6 +14,10 @@ class Note {
     newNote.appendChild(newP);   // <div class="card"><p>title</p></div>;
 
     let newA = document.createElement("a");
+    newA.setAttribute("class","card-remove");
+    newA.innerHTML("remove");
+    newNote.appendChild(newA);
+
     
     // HINT🤩 a.addEventListener('click', this.remove.bind(newNote));
     
@@ -35,6 +39,7 @@ class Note {
   remove(){
     // HINT🤩 the meaning of 'this' was set by bind() in the createElement function
     // in this function, 'this' will refer to the current note element
+
   } 
 }
 
