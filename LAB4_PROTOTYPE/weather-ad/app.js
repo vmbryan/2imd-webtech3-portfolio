@@ -58,7 +58,7 @@ class App{
         let graden = document.getElementById('graden').innerText;
         console.log(graden);
 
-        if(graden <= 15){
+        if(graden <= 20){
             
             fetch(apiUrl)
                 .then(response => {
@@ -72,7 +72,9 @@ class App{
                     console.log(err);
                 })
         }else{
-            console.log("het is warmer dan 15 graden");
+            console.log("het is warmer dan 20 graden");
+            document.querySelector(".pokemon").src='https://media1.tenor.com/images/9c7ec77c489fb154c0e4bf44bfec583d/tenor.gif';
+            document.getElementById('todo').innerText="It's a great time to go outside!"
         }
     }
 
