@@ -4,17 +4,20 @@ class App{
         this.lat;
         this.lng;
     }
+    
 
     getLocation(){
+        
         navigator.geolocation.getCurrentPosition(this.gotLocation.bind(this), this.errorLocation.bind(this));
     }
     
     gotLocation(result){
+
         console.log(result);
         this.lat = result.coords.latitude;
         this.lng = result.coords.longitude;
         this.getWeather();
-        this.getGame();
+        this.getPokemon();
     }
 
     getWeather(){
@@ -30,34 +33,49 @@ class App{
                 })
                 .then(data =>{
                     temperature = localStorage.setItem("temperature",(data.currently.temperature));
-                    document.querySelector("#weather").innerHTML = "Het is " + data.currently.temperature + " graden.";
+                    document.querySelector("#graden").innerHTML = data.currently.temperature ;
                 })
                 .catch(err => {
                     console.log(err);
                 });
         }else{
             console.log("data from storage");
-            document.querySelector("#weather").innerHTML = "Het is " + localStorage.getItem("temperature") + " graden."
+            document.querySelector("#graden").innerHTML = localStorage.getItem("temperature");
         }
     }
-    getGame(){
-        let graden = document.querySelector("#weather").innerHTML;
-        if(graden <= 20){
-            fetch("https://rawg-video-games-database.p.rapidapi.com/games", {
-                "method": "GET",
-                "headers": {
-                    "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com",
-                    "x-rapidapi-key": "9e620c3e1amsh83cc64223ab9646p1f70e9jsn4250c13eed9c"
-                }
-            })
-            .then(response => {
-                console.log(response);
-            })
-            .catch(err => {
-                console.log(err);
-            });
+
+    getPokemon(){
+        const apiData = {
+            url: 'https://pokeapi.co/api/v2/',
+            type: 'pokemon',
+            id: Math.floor(Math.random() * 400) + 1,
+        }
+        const {url, type, id} = apiData;
+        const apiUrl = `${apiData.url}${apiData.type}/${apiData.id}`;
+
+        console.log(apiUrl);
+
+        let graden = document.getElementById('graden').innerText;
+        console.log(graden);
+
+        if(graden <= 15){
+            
+            fetch(apiUrl)
+                .then(response => {
+                    return response.json();
+                })
+                .then(data => {
+                    document.querySelector(".pokemon").src=`${data.sprites.front_default}`;
+                    document.getElementById('name').innerText=`${data.name}`;
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        }else{
+            console.log("het is warmer dan 15 graden");
         }
     }
+
 
     errorLocation(result){
         console.log(err);
