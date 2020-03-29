@@ -16,7 +16,9 @@ class Note {
     let newA = document.createElement("a");
     newA.setAttribute("class","card-remove");
     newA.innerHTML("remove");
+
     newNote.appendChild(newA);
+    newA.addEventListener('click',this.remove.bind(newNote));
 
     
     // HINT🤩 a.addEventListener('click', this.remove.bind(newNote));
@@ -50,10 +52,18 @@ class App {
     // HINT🤩
     // clicking the button should work
     // pressing the enter key should also work
+    this.keyAdd = document.getElementById('txtAddNote');
+    this.keyAdd.addEventListener("keypress", enter => {
+      if(enter.keyCode == 13){
+        enter.preventDefault();
+        document.getElementById('btnAddNote').click();
+      }
+    });
+
     this.btnAdd = document.querySelector("#btnAddNote");
     // this.btnAdd = ???
     this.btnAdd.addEventListener("click", this.createNote.bind(this));
-    // this.loadNotesFromStorage();
+    this.loadNotesFromStorage();
   }
   
   loadNotesFromStorage() {
@@ -66,7 +76,7 @@ class App {
     // this function should create a new note by using the Note() class
     
     // HINT🤩
-    let text = document.querySelector("#txtAddNote").value;
+    let text = document.getElementById('txtAddNote').value;
     console.log(text);
 
     let note = new Note(text);
