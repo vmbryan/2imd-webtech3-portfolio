@@ -11,8 +11,8 @@ class Note {
     newNote.innerHTML = `<p>${title}</p> <a href="#" class="card-remove">Remove</a>`;
     newNote.classList = `card`;
 
-    let removeLink = newNote.querySelector(`.card-remove`);
-    removeLink.addEventListener(`click`, this.remove.bind(newNote));
+    let removeBind = newNote.querySelector(`.card-remove`);
+    removeBind.addEventListener(`click`, this.remove.bind(newNote));
     return newNote;
     
   }
@@ -40,8 +40,28 @@ class Note {
   remove(){
     // HINT🤩 the meaning of 'this' was set by bind() in the createElement function
     // in this function, 'this' will refer to the current note element
+    let removeBind = this;
+    // console.log(removeBind);
 
-  } 
+    removeBind.addEventListener(`click`, e => {
+      e.preventDefault();
+    });
+
+    let localArray = JSON.parse(localStorage.getItem(`localData`));
+    let title = this.querySelector(`p`).innerHTML;
+    let ArrayIndex = localArray.indexOf(title); 
+    localArray.splice(ArrayIndex, 1); 
+
+    localStorage.setItem(`localData`, JSON.stringify(localArray));  
+    
+    removeBind.classList.add("animated");
+    removeBind.classList.add("fadeOutLeft");
+     
+    setTimeout(e => {
+       this.remove();
+    }, 500);
+    
+  }  
 }
 
 class App {
